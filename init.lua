@@ -11,4 +11,4 @@ require("config.autocmds")
 -- This will automatically look into your lua/plugins/ folder
 require("config.lazy")
 
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("onedark")
