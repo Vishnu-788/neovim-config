@@ -22,6 +22,12 @@ return {
 				"gofumpt",
 				"google-java-format",
 				"prettier",
+            "rustfmt",
+            --Linters
+            "ruff",           -- Python
+            "eslint_d",       -- JS/TS
+            "golangci-lint",  -- Go
+            "checkstyle",    
 			},
 		},
 	},

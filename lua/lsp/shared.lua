@@ -33,10 +33,6 @@ M.on_attach = function(_, bufnr)
 	map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
 	map("<leader>q", vim.diagnostic.setloclist, "Diagnostics List")
 
-	-- FORMATTING
-	map("<leader>f", function()
-		require("conform").format({ async = true, lsp_fallback = true })
-	end, "Format File")
 end
 
 return M
