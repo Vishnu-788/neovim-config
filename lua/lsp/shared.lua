@@ -1,4 +1,6 @@
--- ~/.config/nvim/lua/lsp/shared.lualocal M = {}
+-- ~/.config/nvim/lua/lsp/shared.lua
+
+local M = {}
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
