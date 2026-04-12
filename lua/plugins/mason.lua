@@ -16,7 +16,6 @@ return {
 				"jdtls",
 				"gopls",
 				"ts_ls",
-				"rust-analyzer",
 				-- Formatters
 				"black",
 				"gofumpt",
@@ -47,6 +46,7 @@ return {
 				java = { "google-java-format" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
+				rust = { "rustfmt" },
 			},
 		},
 	},

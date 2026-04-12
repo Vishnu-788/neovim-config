@@ -1,59 +1,58 @@
--- Using Lazy
--- return {
--- 	"navarasu/onedark.nvim",
--- 	priority = 1000, -- make sure to load this before all the other start plugins
--- 	config = function()
--- 		require("onedark").setup({
--- 			style = "deep",
--- 		})
--- 		require("onedark").load()
--- 	end,
--- }
-
--- return {
---   "folke/tokyonight.nvim",
---   lazy = false,
---   priority = 1000,
---   opts = {},
--- }
 return {
-    'marko-cerovac/material.nvim',
-    lazy = false,        -- load at startup (it's a colorscheme)
-    priority = 1000,     -- load before other plugins
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1000,
     opts = {
-        contrast = {
-            terminal = false,
-            sidebars = true,
-            floating_windows = false,
-            cursor_line = true,
-        },
+      options = {
+        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+        compile_file_suffix = "_compiled",
+        transparent = false,
+        terminal_colors = true,
+        dim_inactive = false,
         styles = {
-            comments = { italic = true },
-            keywords = { bold = true },
+          comments  = "italic",
+          keywords  = "bold",
+          functions = "NONE",
+          strings   = "NONE",
+          variables = "NONE",
         },
-        plugins = {        -- enable material styling for these plugins
-            "nvim-tree",
-            "telescope",
+      },
+      groups = {
+        carbonfox = {
+          -- Argonaut Background Overrides
+          Normal          = { bg = "#0e1019" },
+          NormalNC        = { bg = "#0e1019" },
+          SignColumn      = { bg = "#0e1019" },
+          EndOfBuffer     = { bg = "#0e1019" },
+          NvimTreeNormal  = { bg = "#0e1019" },
+          NeoTreeNormal   = { bg = "#0e1019" },
+          NeoTreeNormalNC = { bg = "#0e1019" },
+
+          -- Folder Tree Highlights (Light Green Icons)
+          Directory                = { fg = "#a6e22e" },
+          NvimTreeFolderIcon       = { fg = "#a6e22e" },
+          NvimTreeFolderName       = { fg = "#fffaf4" },
+          NvimTreeOpenedFolderName = { fg = "#00d8eb", style = "bold" },
+          NvimTreeEmptyFolderName  = { fg = "#444444" },
+          NvimTreeRootFolder       = { fg = "#ffb900", style = "bold" },
+          NeoTreeDirectoryIcon     = { fg = "#a6e22e" },
+          NeoTreeDirectoryName     = { fg = "#fffaf4" },
+          NeoTreeRootName          = { fg = "#ffb900", style = "bold" },
+
+          -- Your Original Tweaks
+          Comment      = { fg = "#6e6e6e", style = "italic" },
+          CursorLineNr = { fg = "#78a9ff", style = "bold" },
+
+          -- Rust-Specific 'fn' Keyword (Tokyo Night Purple)
+          ["@keyword.function.rust"] = { fg = "#bb9af7", style = "italic" },
         },
-        disable = {
-            colored_cursor = false,
-            borders = false,
-            background = false,
-        },
-        high_visibility = {
-            lighter = false,
-            darker = false,
-        },
-        lualine_style = "default",   -- "default" | "stealth"
-        async_loading = true,
-        custom_colors = nil,
-        custom_highlights = {},
+      },
+      palettes = {},
     },
     config = function(_, opts)
-        require('material').setup(opts)
-
-        -- Pick your style: 'darker' | 'lighter' | 'oceanic' | 'palenight' | 'deep ocean'
-        vim.g.material_style = "deep ocean"
-        vim.cmd('colorscheme material')
+      require("nightfox").setup(opts)
+      vim.cmd.colorscheme("carbonfox")
     end,
+  },
 }

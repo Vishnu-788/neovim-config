@@ -6,10 +6,11 @@ return {
 
         lint.linters_by_ft = {
             python     = { "ruff" },       -- fast Python linter (replaces flake8)
-            java       = { "checkstyle" },
+            -- java       = { "checkstyle" },
             javascript = { "eslint_d" },   -- eslint daemon, much faster than eslint
             typescript = { "eslint_d" },
             go         = { "golangcilint" },
+				rust		  = { "clippy" },
         }
 
         -- Run linter on these events

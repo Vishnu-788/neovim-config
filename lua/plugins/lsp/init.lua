@@ -31,5 +31,6 @@ return {
 		require("plugins.lsp.java")
 		require("plugins.lsp.go")
 		require("plugins.lsp.typescript")
+		require("plugins.lsp.rust")
 	end,
 }
