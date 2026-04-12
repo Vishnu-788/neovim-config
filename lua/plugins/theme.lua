@@ -45,7 +45,6 @@ return {
           CursorLineNr = { fg = "#78a9ff", style = "bold" },
 
           -- Rust-Specific 'fn' Keyword (Tokyo Night Purple)
-          ["@keyword.function.rust"] = { fg = "#bb9af7", style = "italic" },
         },
       },
       palettes = {},
