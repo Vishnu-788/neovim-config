@@ -1,57 +1,50 @@
 return {
   {
-    "EdenEast/nightfox.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {
-      options = {
-        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-        compile_file_suffix = "_compiled",
-        transparent = false,
-        terminal_colors = true,
-        dim_inactive = false,
-        styles = {
-          comments  = "italic",
-          keywords  = "bold",
-          functions = "NONE",
-          strings   = "NONE",
-          variables = "NONE",
-        },
+      style = "night", 
+      transparent = false,
+      terminal_colors = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true, bold = true },
+        functions = {},
+        variables = {},
       },
-      groups = {
-        carbonfox = {
-          -- Argonaut Background Overrides
-          Normal          = { bg = "#0e1019" },
-          NormalNC        = { bg = "#0e1019" },
-          SignColumn      = { bg = "#0e1019" },
-          EndOfBuffer     = { bg = "#0e1019" },
-          NvimTreeNormal  = { bg = "#0e1019" },
-          NeoTreeNormal   = { bg = "#0e1019" },
-          NeoTreeNormalNC = { bg = "#0e1019" },
+      
+      -- Hijack the base colors for the Argonaut background
+      on_colors = function(colors)
+        colors.bg = "#0e1019"
+        colors.bg_dark = "#0e1019"   
+        colors.bg_float = "#0e1019"  
+      end,
 
-          -- Folder Tree Highlights (Light Green Icons)
-          Directory                = { fg = "#a6e22e" },
-          NvimTreeFolderIcon       = { fg = "#a6e22e" },
-          NvimTreeFolderName       = { fg = "#fffaf4" },
-          NvimTreeOpenedFolderName = { fg = "#00d8eb", style = "bold" },
-          NvimTreeEmptyFolderName  = { fg = "#444444" },
-          NvimTreeRootFolder       = { fg = "#ffb900", style = "bold" },
-          NeoTreeDirectoryIcon     = { fg = "#a6e22e" },
-          NeoTreeDirectoryName     = { fg = "#fffaf4" },
-          NeoTreeRootName          = { fg = "#ffb900", style = "bold" },
+      -- Apply your specific highlight overrides
+      on_highlights = function(hl, c)
+        -- Folder Tree Highlights (Now in Tokyo Night Purple)
+        hl.Directory                = { fg = "#bb9af7" } 
+        hl.NvimTreeFolderIcon       = { fg = "#bb9af7" } 
+        hl.NvimTreeFolderName       = { fg = "#fffaf4" }
+        hl.NvimTreeOpenedFolderName = { fg = "#00d8eb", bold = true }
+        hl.NvimTreeEmptyFolderName  = { fg = "#444444" }
+        hl.NvimTreeRootFolder       = { fg = "#ffb900", bold = true }
+        hl.NeoTreeDirectoryIcon     = { fg = "#bb9af7" } 
+        hl.NeoTreeDirectoryName     = { fg = "#fffaf4" }
+        hl.NeoTreeRootName          = { fg = "#ffb900", bold = true }
 
-          -- Your Original Tweaks
-          Comment      = { fg = "#6e6e6e", style = "italic" },
-          CursorLineNr = { fg = "#78a9ff", style = "bold" },
+        -- Your Original Tweaks
+        hl.Comment      = { fg = "#6e6e6e", italic = true }
+        hl.CursorLineNr = { fg = "#78a9ff", bold = true }
 
-          -- Rust-Specific 'fn' Keyword (Tokyo Night Purple)
-        },
-      },
-      palettes = {},
+        -- Rust-Specific 'fn' Keyword Override
+        hl["@keyword.function.rust"] = { fg = "#ffb900", italic = true, bold = true }
+      end,
     },
     config = function(_, opts)
-      require("nightfox").setup(opts)
-      vim.cmd.colorscheme("carbonfox")
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
 }
