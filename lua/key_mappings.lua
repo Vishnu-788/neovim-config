@@ -38,3 +38,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result and center" })
+
+-- Toggle Neo-tree
+vim.keymap.set('n', '<C-n>', '<Cmd>Neotree toggle<CR>', { noremap = true, silent = true, desc = 'Toggle Neotree' })
