@@ -8,3 +8,7 @@ vim.opt.tabstop = 3         -- Number of spaces a <Tab> counts for in a file
 vim.opt.shiftwidth = 3      -- Number of spaces for each step of (auto)indent
 vim.opt.softtabstop = 3     -- Number of spaces a <Tab> counts for when editing
 vim.opt.expandtab = true    -- Convert tabs to spaces (standard for most languages)
+
+vim.opt.scrolloff = 999 
+vim.opt.wrap = false
+vim.opt.sidescrolloff = 8

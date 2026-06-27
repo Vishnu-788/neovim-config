@@ -30,3 +30,12 @@ autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
+
+
+-- Fix Visual mode selection colors (prevent rainbow bleed-through from semantic tokens)
+autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "Visual", { bg = "#3d3458", fg = "NONE" })
+  end,
+})

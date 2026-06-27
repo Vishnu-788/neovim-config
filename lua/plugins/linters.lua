@@ -14,6 +14,5 @@ return {
         java = { "checkstyle" },
         kotlin = { "ktlint"}
       }
-      
     end,
 }
