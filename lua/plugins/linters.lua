@@ -11,7 +11,7 @@ return {
         typescriptreact = { "eslint_d" },
         python = { "ruff" }, -- Ruff is the fastest modern Python linter
         go = { "golangcilint" },
-        java = { "checkstyle" },
+        -- java = { "checkstyle" },
         kotlin = { "ktlint"}
       }
     end,

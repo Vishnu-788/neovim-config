@@ -12,6 +12,7 @@ vim.opt.expandtab = true    -- Convert tabs to spaces (standard for most languag
 vim.opt.scrolloff = 999 
 vim.opt.wrap = false
 vim.opt.sidescrolloff = 8
+vim.opt.laststatus = 3
 
 vim.opt.fillchars:append({
   vert = " ",
@@ -19,3 +20,5 @@ vim.opt.fillchars:append({
   vertright = " ",
   verthoriz = " "
 })
+
+
