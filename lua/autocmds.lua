@@ -1,6 +1,54 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+local augroup = vim.api.nvim_create_augroup
+local greeting_group = augroup("CustomGreeting", { clear = true })
+
+local function show_greeting()
+   local ok, alpha = pcall(require, "alpha")
+   if ok then
+      alpha.start(false)
+   else
+      vim.cmd("Alpha")
+   end
+end
+
+autocmd("FileType", {
+   pattern = "java",
+   callback = function()
+      require 'config.jdtls_config'.setup()
+   end
+})
+
+autocmd("VimEnter", {
+   group = greeting_group,
+   callback = function()
+      local is_empty = vim.fn.argc() == 0 and vim.api.nvim_buf_line_count(0) == 1 and
+          vim.api.nvim_buf_get_lines(0, 0, -1, false)[1] == ""
+      local is_dir = vim.fn.isdirectory(vim.fn.expand("%:p")) == 1
+
+      if is_empty or is_dir then
+         show_greeting()
+      end
+   end,
+})
+
+autocmd("BufDelete", {
+   group = greeting_group,
+   callback = function()
+      -- Use vim.schedule to wait until the buffer is completely wiped out before checking
+      vim.schedule(function()
+         -- Get a list of all currently open, listed buffers
+         local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
+         -- If no listed buffers are left, launch the greeting
+         if #buffers == 0 then
+            show_greeting()
+         end
+      end)
+   end,
+})
+
 autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
    group = lint_augroup,
    callback = function()
