@@ -9,20 +9,29 @@ return {
       config = function()
          local lualine = require "lualine"
 
-         -- Color table for highlights
+         -- Helper function to extract hex colors from highlight groups
+         local function get_hl_color(group, attr)
+            local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+            if hl and hl[attr] then
+               return string.format("#%06x", hl[attr])
+            end
+            return nil
+         end
+
+         -- Dynamically pull colors from the active theme
          -- stylua: ignore
          local colors = {
-            bg       = '#202328',
-            fg       = '#bbc2cf',
-            yellow   = '#ECBE7B',
-            cyan     = '#008080',
-            darkblue = '#081633',
-            green    = '#98be65',
-            orange   = '#FF8800',
-            violet   = '#a9a1e1',
-            magenta  = '#c678dd',
-            blue     = '#51afef',
-            red      = '#ec5f67',
+            bg       = get_hl_color("StatusLine", "bg") or get_hl_color("Normal", "bg") or '#202328',
+            fg       = get_hl_color("StatusLine", "fg") or get_hl_color("Normal", "fg") or '#bbc2cf',
+            yellow   = get_hl_color("WarningMsg", "fg") or '#ECBE7B',
+            cyan     = get_hl_color("Special", "fg") or '#008080',
+            darkblue = get_hl_color("CursorLine", "bg") or '#081633',
+            green    = get_hl_color("String", "fg") or '#98be65',
+            orange   = get_hl_color("Constant", "fg") or '#FF8800',
+            violet   = get_hl_color("Statement", "fg") or '#a9a1e1',
+            magenta  = get_hl_color("Type", "fg") or '#c678dd',
+            blue     = get_hl_color("Function", "fg") or '#51afef',
+            red      = get_hl_color("Error", "fg") or '#ec5f67',
          }
 
          local conditions = {
@@ -226,8 +235,17 @@ return {
             padding = { left = 1 },
          }
 
-         -- Now don't forget to initialize lualine
+         -- Initialize lualine
          lualine.setup(config)
+
+         -- Auto-reload lualine when the colorscheme changes
+         vim.api.nvim_create_autocmd("ColorScheme", {
+            pattern = "*",
+            callback = function()
+               package.loaded["lualine"] = nil
+               require("lualine").setup(config)
+            end,
+         })
       end,
    },
 }
