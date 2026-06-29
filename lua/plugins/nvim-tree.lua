@@ -1,11 +1,22 @@
 return {
    {
-      "echasnovski/mini.icons",
-      version = "*",
+      "nvim-tree/nvim-web-devicons",
       config = function()
-         require("mini.icons").setup()
-         -- Makes it a drop-in replacement for nvim-web-devicons
-         MiniIcons.mock_nvim_web_devicons()
+         require("nvim-web-devicons").setup({
+            -- Your personal icons go here to override the defaults
+            override = {
+               zsh = {
+                  icon = "",
+                  color = "#428850",
+                  cterm_color = "65",
+                  name = "Zsh"
+               }
+            },
+            -- Globally enable different highlight colors per icon
+            color_icons = true,
+            -- Globally enable default icons (will get overridden by specific icons)
+            default = true,
+         })
       end
    },
    {
@@ -13,7 +24,7 @@ return {
       version = "*",
       lazy = false,
       dependencies = {
-         "echasnovski/mini.icons",
+         "nvim-tree/nvim-web-devicons",
       },
       config = function()
          require("nvim-tree").setup({
