@@ -13,13 +13,6 @@ local function show_greeting()
    end
 end
 
-autocmd("FileType", {
-   pattern = "java",
-   callback = function()
-      require 'config.jdtls_config'.setup()
-   end
-})
-
 autocmd("VimEnter", {
    group = greeting_group,
    callback = function()
