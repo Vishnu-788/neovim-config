@@ -62,7 +62,7 @@ return {
             window = {
                border       = "rounded",
                -- Docs panel sits to the RIGHT of the menu (VSCode style)
-               min_width    = 50,       -- wide enough to show full signatures
+               min_width    = 50, -- wide enough to show full signatures
                max_width    = 70,
                max_height   = 20,
                winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
@@ -74,10 +74,10 @@ return {
 
          menu = {
             border             = "rounded",
-            min_width          = 40,              -- wider menu
-            max_height         = 20,              -- taller — shows more items at once
+            min_width          = 40,           -- wider menu
+            max_height         = 20,           -- taller — shows more items at once
 
-            direction_priority = { "s", "n" },    -- try east first, fallback west
+            direction_priority = { "s", "n" }, -- try east first, fallback west
             winhighlight       = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection",
             draw               = {
                gap = 3,
@@ -131,23 +131,23 @@ return {
    config = function(_, opts)
       require("blink.cmp").setup(opts)
 
-      -- Menu
-      vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "#1e1e2e", fg = "#cdd6f4" })
-      vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#89b4fa" }) -- blue
-      vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#2a2a3d", bold = true })
+      -- Menu: Link to standard popup menu groups
+      vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "Pmenu" })
+      vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { link = "FloatBorder" })
+      vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { link = "PmenuSel" })
 
-      -- Docs panel (right side)
-      vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "#181825", fg = "#cdd6f4" })
-      vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = "#cba6f7" }) -- purple border (distinct from menu)
+      -- Docs panel: Link to standard floating window groups (matches dressing.nvim)
+      vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "NormalFloat" })
+      vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "FloatBorder" })
 
-      -- Signature help (below cursor)
-      vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "#181825", fg = "#cdd6f4" })
-      vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { fg = "#a6e3a1" }) -- green
+      -- Signature help: Link to standard floating window groups
+      vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { link = "NormalFloat" })
+      vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { link = "FloatBorder" })
 
-      -- Text hierarchy
-      vim.api.nvim_set_hl(0, "BlinkCmpLabel", { fg = "#cdd6f4", bold = true })
-      vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { fg = "#6c7086", italic = true })
-      vim.api.nvim_set_hl(0, "BlinkCmpKind", { fg = "#f9e2af", italic = true })
-      vim.api.nvim_set_hl(0, "BlinkCmpSource", { fg = "#45475a" }) -- very dimmed
+      -- Text hierarchy: Link to standard syntax groups
+      vim.api.nvim_set_hl(0, "BlinkCmpLabel", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "BlinkCmpKind", { link = "Special" })
+      vim.api.nvim_set_hl(0, "BlinkCmpSource", { link = "NonText" })
    end,
 }
