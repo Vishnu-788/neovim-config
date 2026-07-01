@@ -1,5 +1,4 @@
 return {
-   -- 1. Main LSPConfig & Diagnostics Setup
    {
       "neovim/nvim-lspconfig",
       event = { "BufReadPre", "BufNewFile" },
@@ -21,7 +20,6 @@ return {
             severity_sort = true,
          })
 
-         -- Colored sign column bars
          vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#f38ba8", bold = true })
          vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#f9e2af", bold = true })
          vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#89b4fa", bold = true })
@@ -29,7 +27,6 @@ return {
       end,
    },
 
-   -- 2. Mason Setup
    {
       "mason-org/mason.nvim",
       opts = {
@@ -43,13 +40,12 @@ return {
       },
    },
 
-   -- 3. Mason LSPConfig & Auto-Handlers
    {
       "mason-org/mason-lspconfig.nvim",
       dependencies = {
          "mason-org/mason.nvim",
          "neovim/nvim-lspconfig",
-         "saghen/blink.cmp", -- Needed to hook up autocompletion capabilities
+         "saghen/blink.cmp",
       },
       opts = {
          ensure_installed = {
@@ -90,6 +86,6 @@ return {
       --    })
       -- end,
    },
-   {'mfussenegger/nvim-jdtls'}
+   { 'mfussenegger/nvim-jdtls' }
 
 }

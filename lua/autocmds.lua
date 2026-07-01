@@ -29,12 +29,9 @@ autocmd("VimEnter", {
 autocmd("BufDelete", {
    group = greeting_group,
    callback = function()
-      -- Use vim.schedule to wait until the buffer is completely wiped out before checking
       vim.schedule(function()
-         -- Get a list of all currently open, listed buffers
          local buffers = vim.fn.getbufinfo({ buflisted = 1 })
 
-         -- If no listed buffers are left, launch the greeting
          if #buffers == 0 then
             show_greeting()
          end

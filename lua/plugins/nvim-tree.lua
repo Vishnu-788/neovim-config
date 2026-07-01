@@ -3,7 +3,6 @@ return {
       "nvim-tree/nvim-web-devicons",
       config = function()
          require("nvim-web-devicons").setup({
-            -- Your personal icons go here to override the defaults
             override = {
                zsh = {
                   icon = "",
@@ -12,9 +11,7 @@ return {
                   name = "Zsh"
                }
             },
-            -- Globally enable different highlight colors per icon
             color_icons = true,
-            -- Globally enable default icons (will get overridden by specific icons)
             default = true,
          })
       end

@@ -3,7 +3,7 @@ return {
    event = "InsertEnter",
    config = function()
       require("nvim-autopairs").setup({
-         check_ts = true, -- Enable treesitter integration if you use it
+         check_ts = true,
       })
    end,
 }

@@ -4,6 +4,9 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("i", "jk", "<ESC>", { noremap = true, silent = true, desc = "Exit insert mode" })
 vim.keymap.set("n", "<leader>e", ":Ex<CR>", { noremap = true, silent = true, desc = "Open netrw" })
 
+vim.keymap.set("n", "<leader>vs", ":vsp<CR>", { desc = "Open vertical split" })
+vim.keymap.set("n", "<leader>x", "<cmd>close<CR>", { desc = "Close split screens" })
+
 vim.keymap.set({ "n", "v" }, "<leader>fm", function()
    require("conform").format {
       lsp_fallback = true,

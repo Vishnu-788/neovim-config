@@ -9,7 +9,7 @@ return {
          typescript = { "eslint_d" },
          javascriptreact = { "eslint_d" },
          typescriptreact = { "eslint_d" },
-         python = { "ruff" }, -- Ruff is the fastest modern Python linter
+         python = { "ruff" },
       }
    end,
 }

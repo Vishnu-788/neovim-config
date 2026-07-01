@@ -58,11 +58,10 @@ return {
       completion = {
          documentation = {
             auto_show = true,
-            auto_show_delay_ms = 100, -- faster popup
+            auto_show_delay_ms = 100,
             window = {
                border       = "rounded",
-               -- Docs panel sits to the RIGHT of the menu (VSCode style)
-               min_width    = 50, -- wide enough to show full signatures
+               min_width    = 50,
                max_width    = 70,
                max_height   = 20,
                winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
@@ -73,13 +72,13 @@ return {
          ghost_text = { enabled = true },
 
          menu = {
-            border             = "rounded",
-            min_width          = 40,           -- wider menu
-            max_height         = 20,           -- taller — shows more items at once
+            border = "rounded",
+            min_width = 40,
+            max_height = 20,
 
-            direction_priority = { "s", "n" }, -- try east first, fallback west
-            winhighlight       = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection",
-            draw               = {
+            direction_priority = { "s", "n" },
+            winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection",
+            draw = {
                gap = 3,
                columns = {
                   { "kind_icon",  gap = 1 },
@@ -94,7 +93,7 @@ return {
                      highlight = function(ctx) return ctx.kind_hl end,
                   },
                   label = {
-                     width     = { min = 20, max = 30 }, -- label always has room
+                     width     = { min = 20, max = 30 },
                      text      = function(ctx) return ctx.label end,
                      highlight = "BlinkCmpLabel",
                   },
@@ -118,7 +117,6 @@ return {
          },
       },
 
-      -- Signature help panel (shows function args as you type)
       signature = {
          enabled = true,
          window = {
@@ -131,20 +129,16 @@ return {
    config = function(_, opts)
       require("blink.cmp").setup(opts)
 
-      -- Menu: Link to standard popup menu groups
       vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "Pmenu" })
       vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { link = "FloatBorder" })
       vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { link = "PmenuSel" })
 
-      -- Docs panel: Link to standard floating window groups (matches dressing.nvim)
       vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "NormalFloat" })
       vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "FloatBorder" })
 
-      -- Signature help: Link to standard floating window groups
       vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { link = "NormalFloat" })
       vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { link = "FloatBorder" })
 
-      -- Text hierarchy: Link to standard syntax groups
       vim.api.nvim_set_hl(0, "BlinkCmpLabel", { link = "Normal" })
       vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { link = "Comment" })
       vim.api.nvim_set_hl(0, "BlinkCmpKind", { link = "Special" })
