@@ -25,6 +25,10 @@ return {
       },
       config = function()
          require("nvim-tree").setup({
+            filters = {
+               dotfiles=false,
+               git_ignored=false,
+            },
             hijack_unnamed_buffer_when_opening = false,
             hijack_directories = {
                enable = false,

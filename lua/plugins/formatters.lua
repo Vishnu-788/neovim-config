@@ -14,6 +14,9 @@ return {
          go = { "gofmt" },
          java = { "google-java-format" },
          kotlin = { "ktlint" },
+         yaml = { "prettier" },
+         xml = { "prettier" },
+         toml = { "taplo" }
       },
    },
 }
