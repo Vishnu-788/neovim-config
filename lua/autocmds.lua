@@ -61,3 +61,12 @@ autocmd("ColorScheme", {
       vim.api.nvim_set_hl(0, 'VertSplit', { fg = 'NONE', bg = 'NONE' })
    end,
 })
+
+autocmd('LspAttach', {
+   callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if client and client.name == 'jdtls' and client.server_capabilities.semanticTokensProvider then
+         vim.lsp.semantic_tokens.enable(false, { bufnr = args.buf })
+      end
+   end,
+})
