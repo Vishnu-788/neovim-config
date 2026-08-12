@@ -1,21 +1,19 @@
+-- lua/plugins/rose-pine.lua
+-- lua/plugins/rose-pine.lua
 return {
-   { 'nvim-treesitter/nvim-treesitter', build = ':tsupdate' },
-   {
-      "baliestri/aura-theme",
-      lazy = false,
-      priority = 1000,
-      config = function(plugin)
-         vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
-         vim.cmd([[colorscheme aura-dark]])
-
-         -- Make background transparent
-         vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
-         vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE", ctermbg = "NONE" })
-         vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE", ctermbg = "NONE" })
-         vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE", ctermbg = "NONE" })
-
-         -- Optional: Ensure LineNr is also transparent if you have line numbers enabled
-         vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE", ctermbg = "NONE" })
-      end
-   }
+   "rose-pine/neovim",
+   name = "rose-pine",
+   priority = 1000,   -- load before other plugins so colorscheme is available early
+   opts = {
+      variant = "auto", -- "main" | "moon" | "dawn"
+      dark_variant = "main",
+      styles = {
+         transparency = true, -- <-- this is the key option
+         italic = false
+      },
+   },
+   config = function(_, opts)
+      require("rose-pine").setup(opts)
+      vim.cmd.colorscheme("rose-pine")
+   end,
 }

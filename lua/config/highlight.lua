@@ -1,14 +1,9 @@
 local function set_italic_highlights()
    local groups = {
-      "@keyword",
       "@keyword.function",
       "@function",
-      "@keyword.operator",
-      "Keyword",
       "Function",
       "Statement",
-      "Conditional",
-      "Repeat"
    }
 
    for _, group in ipairs(groups) do

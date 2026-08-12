@@ -72,6 +72,53 @@ return {
             },
          }
 
+         local mode_name = {
+            n = "NORMAL",
+            i = "INSERT",
+            v = "VISUAL",
+            [""] = "V-BLOCK",
+            V = "V-LINE",
+            c = "COMMAND",
+            no = "O-PENDING",
+            s = "SELECT",
+            S = "S-LINE",
+            [""] = "S-BLOCK",
+            ic = "INSERT",
+            R = "REPLACE",
+            Rv = "V-REPLACE",
+            cv = "EX",
+            ce = "EX",
+            r = "PROMPT",
+            rm = "MORE",
+            ["r?"] = "CONFIRM",
+            ["!"] = "SHELL",
+            t = "TERMINAL",
+         }
+         local mode_color = {
+            n = colors.red,
+            i = colors.green,
+            v = colors.blue,
+            [""] = colors.blue,
+            V = colors.blue,
+            c = colors.magenta,
+            no = colors.red,
+            s = colors.orange,
+            S = colors.orange,
+            [""] = colors.orange,
+            ic = colors.yellow,
+            R = colors.violet,
+            Rv = colors.violet,
+            cv = colors.red,
+            ce = colors.red,
+            r = colors.cyan,
+            rm = colors.cyan,
+            ["r?"] = colors.cyan,
+            ["!"] = colors.red,
+            t = colors.red,
+         }
+
+
+
          local function ins_left(component)
             table.insert(config.sections.lualine_c, component)
          end
@@ -93,29 +140,17 @@ return {
                return ""
             end,
             color = function()
-               local mode_color = {
-                  n = colors.red,
-                  i = colors.green,
-                  v = colors.blue,
-                  [""] = colors.blue,
-                  V = colors.blue,
-                  c = colors.magenta,
-                  no = colors.red,
-                  s = colors.orange,
-                  S = colors.orange,
-                  [""] = colors.orange,
-                  ic = colors.yellow,
-                  R = colors.violet,
-                  Rv = colors.violet,
-                  cv = colors.red,
-                  ce = colors.red,
-                  r = colors.cyan,
-                  rm = colors.cyan,
-                  ["r?"] = colors.cyan,
-                  ["!"] = colors.red,
-                  t = colors.red,
-               }
                return { fg = mode_color[vim.fn.mode()] }
+            end,
+            padding = { right = 2 },
+         }
+
+         ins_left {
+            function()
+               return "[" .. (mode_name[vim.fn.mode()] or "") .. "]"
+            end,
+            color = function()
+               return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
             padding = { right = 1 },
          }

@@ -39,7 +39,6 @@ return {
          },
       },
    },
-
    {
       "mason-org/mason-lspconfig.nvim",
       dependencies = {
@@ -50,7 +49,7 @@ return {
       opts = {
          ensure_installed = {
             "lua_ls", "pyright", "html", "ts_ls",
-            "gopls", "kotlin_language_server", "angularls", "jdtls"
+            "gopls", "kotlin_language_server", "angularls", "jdtls", "clangd"
          },
          automatic_enable = {
             exclude = {
@@ -58,34 +57,17 @@ return {
             }
          }
       }
-      -- config = function()
-      --    -- Grab capabilities from blink.cmp
-      --    local capabilities = require("blink.cmp").get_lsp_capabilities()
-      --
-      --    require("mason-lspconfig").setup({
-      --       ensure_installed = {
-      --          "lua_ls", "pyright", "html", "ts_ls",
-      --          "gopls", "kotlin_language_server", "angularls",
-      --       },
-      --       handlers = {
-      --          ["gopls"] = function()
-      --             require("lspconfig").gopls.setup({
-      --                capabilities = capabilities,
-      --                settings = {
-      --                   gopls = {
-      --                      analyses = {
-      --                         unusedparams = true,
-      --                      },
-      --                      staticcheck = true,
-      --                      gofumpt = true,
-      --                   },
-      --                },
-      --             })
-      --          end,
-      --       },
-      --    })
-      -- end,
    },
-   { 'mfussenegger/nvim-jdtls' }
+   {
+      "saghen/blink.cmp",
+      opts = {
+         enabled = function()
+            return not vim.tbl_contains({ "NvimTree", "TelescopePrompt" }, vim.bo.filetype)
+                and vim.bo.buftype ~= "prompt"
+         end,
+      },
+   },
 
+
+   { 'mfussenegger/nvim-jdtls' }
 }
